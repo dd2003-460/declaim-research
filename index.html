@@ -3,410 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>成璐 (D·declaim) — Research Portfolio</title>
-    <meta name="description" content="Understanding = Compression = Pattern Matching. A unified framework from information theory to cognitive science to social systems.">
+    <title>D·declaim (成璐) — Research Portfolio</title>
     <style>
         :root {
             --bg: #fafaf9;
-            --surface: #ffffff;
             --text: #1a1a1a;
-            --text-muted: #6b7280;
             --accent: #2563eb;
-            --accent-light: #eff6ff;
+            --muted: #6b7280;
             --border: #e5e7eb;
-            --success: #16a34a;
-            --success-bg: #f0fdf4;
-            --warning: #d97706;
-            --warning-bg: #fffbeb;
-            --code-bg: #f8fafc;
+            --green: #16a34a;
+            --amber: #d97706;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Georgia', 'Noto Serif SC', 'Source Han Serif SC', serif;
+            font-family: 'Georgia', 'Noto Serif SC', serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.75;
-            max-width: 820px;
+            line-height: 1.7;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 3rem 2rem 4rem;
+            padding: 3rem 2rem;
         }
-        a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-        a:hover { border-bottom-color: var(--accent); }
-
-        /* Header */
-        header { margin-bottom: 3rem; }
-        h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; }
-        .subtitle { color: var(--text-muted); font-size: 1.1rem; margin-top: 0.3rem; margin-bottom: 1.5rem; }
-        .thesis {
-            font-size: 1.15rem;
-            font-style: italic;
-            color: var(--text);
-            border-left: 3px solid var(--accent);
-            padding-left: 1rem;
+        h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
+        .subtitle { color: var(--muted); font-size: 1.1rem; margin-bottom: 2rem; }
+        h2 {
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--text);
+            padding-bottom: 0.3rem;
+            margin: 2.5rem 0 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        h3 { font-size: 1.05rem; margin: 1rem 0 0.5rem; color: var(--accent); }
+        p { margin-bottom: 1rem; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .links { margin: 1rem 0 2rem; }
+        .links a { margin-right: 1.5rem; }
+        .highlight {
+            background: #eff6ff;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--accent);
             margin: 1.5rem 0;
         }
-        .links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-        .links a {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: all 0.2s;
+        .theorem-box {
+            background: #eff6ff;
+            border: 1px solid var(--accent);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
         }
-        .links a:hover { border-color: var(--accent); color: var(--accent); }
-
-        /* Sections */
-        h2 {
-            font-size: 1.35rem;
-            margin: 2.8rem 0 1rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 2px solid var(--text);
-            letter-spacing: 0.03em;
-        }
-        h3 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; }
-        p { margin-bottom: 1rem; }
-        ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+        .theorem-box h3 { color: var(--accent); font-size: 1rem; margin-bottom: 0.5rem; }
+        ul { margin: 0.5rem 0 1rem 1.5rem; }
         li { margin-bottom: 0.4rem; }
-        strong { font-weight: 700; }
-        em { font-style: italic; }
-        code {
-            background: var(--code-bg);
-            padding: 0.15em 0.4em;
-            border-radius: 3px;
-            font-size: 0.9em;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-        }
-
-        /* Cards */
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.2rem 1.5rem;
+        .institution-map {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
             margin: 1rem 0;
         }
-        .card h4 { font-size: 1rem; margin-bottom: 0.3rem; }
-        .card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
-
-        /* Thread overview */
-        .threads { display: grid; grid-template-columns: 1fr; gap: 0.8rem; margin: 1rem 0; }
-        .thread {
-            display: grid;
-            grid-template-columns: 2fr 3fr auto;
-            gap: 1rem;
-            align-items: center;
-            padding: 0.8rem 1.2rem;
-            background: var(--surface);
+        .inst-card {
+            background: white;
             border: 1px solid var(--border);
-            border-radius: 6px;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
         }
-        .thread-name { font-weight: 600; font-size: 0.95rem; }
-        .thread-output { font-size: 0.85rem; color: var(--text-muted); }
-        .badge {
+        .inst-card h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .inst-card p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+        .status-badge {
             display: inline-block;
-            padding: 0.2rem 0.7rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 9999px;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            white-space: nowrap;
         }
-        .badge-complete { background: var(--success-bg); color: var(--success); }
-        .badge-progress { background: var(--warning-bg); color: var(--warning); }
-
-        /* Grid layouts */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1rem 0; }
-        .grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin: 1rem 0; }
-
-        /* Table */
-        table {
+        .status-badge.complete { background: #dcfce7; color: #166534; }
+        .status-badge.ready { background: #dbeafe; color: #1e40af; }
+        .status-badge.waiting { background: #fef3c7; color: #92400e; }
+        .pkg-table {
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
             font-size: 0.9rem;
         }
-        th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); }
-        th { font-weight: 600; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
-
-        /* Findings table */
-        .findings td:nth-child(n+2) { font-family: 'SF Mono', monospace; font-size: 0.85rem; }
-        .findings .sig { color: var(--success); font-weight: 600; }
-
-        /* Immortality path */
-        .path {
-            background: linear-gradient(135deg, var(--accent-light), #f0fdf4);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.2rem 0;
-        }
-        .path-step {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            margin: 0.5rem 0;
-            font-size: 0.95rem;
-        }
-        .path-arrow { color: var(--accent); font-weight: 700; }
-        .path-stage {
-            margin-top: 1rem;
-            padding-top: 0.8rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* Highlight box */
-        .highlight {
-            background: var(--warning-bg);
-            border-left: 3px solid var(--warning);
-            padding: 1rem 1.2rem;
-            border-radius: 0 6px 6px 0;
-            margin: 1.2rem 0;
-            font-size: 0.95rem;
-        }
-
-        /* File tree */
-        .file-tree {
-            background: var(--code-bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 1rem 1.2rem;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            font-size: 0.82rem;
-            line-height: 1.6;
-            white-space: pre;
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-
-        /* Quote */
-        .quote {
-            text-align: center;
-            margin: 2.5rem 0 1.5rem;
-            padding: 1.5rem;
-            border-top: 1px solid var(--border);
+        .pkg-table th, .pkg-table td {
+            text-align: left;
+            padding: 0.6rem 0.8rem;
             border-bottom: 1px solid var(--border);
-            font-style: italic;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.8;
         }
-        .quote-attr {
-            font-style: normal;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            color: var(--text-muted);
+        .pkg-table th { font-weight: 600; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; }
+        .pkg-table td:first-child { font-weight: 500; }
+        .progress-bar {
+            background: #e5e7eb;
+            border-radius: 9999px;
+            height: 8px;
+            width: 120px;
+            display: inline-block;
+            vertical-align: middle;
         }
-
-        /* Footer */
+        .progress-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: var(--green);
+        }
         footer {
             margin-top: 3rem;
             padding-top: 1rem;
             border-top: 1px solid var(--border);
-            color: var(--text-muted);
+            color: var(--muted);
             font-size: 0.85rem;
-            display: flex;
-            justify-content: space-between;
         }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            body { padding: 2rem 1.2rem; }
-            h1 { font-size: 1.8rem; }
-            .thread { grid-template-columns: 1fr; gap: 0.3rem; }
-            .grid-2, .grid-4 { grid-template-columns: 1fr; }
-            footer { flex-direction: column; gap: 0.3rem; }
+        @media (max-width: 600px) {
+            body { padding: 1.5rem 1rem; }
+            .institution-map { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>成璐 (D·declaim)</h1>
-        <p class="subtitle">Independent Researcher — Information Theory, Cognitive Science, Computational Social Science</p>
-        <p class="thesis">"Understanding = Compression = Pattern Matching" — a unified framework from Shannon's entropy to Kahneman's System 1/2 to Hayek's price mechanism.</p>
-        <div class="links">
-            <a href="https://github.com/dd2003-460">GitHub</a>
-            <a href="#book">Book</a>
-            <a href="#paper">Paper</a>
-            <a href="#phd">PhD Package</a>
-            <a href="#path">Immortality Path</a>
-        </div>
-    </header>
+    <h1>D·declaim (成璐)</h1>
+    <p class="subtitle">Independent Researcher — Information Theory & Computational Social Science</p>
 
-    <!-- Research Overview -->
-    <h2>🔬 Research Overview</h2>
-    <p>My work explores a single thesis from multiple angles: <strong>understanding is compression, and compression is pattern matching.</strong> This framework unifies information theory, cognitive science, and social systems under a common mathematical language.</p>
-
-    <div class="threads">
-        <div class="thread">
-            <span class="thread-name">📖 Book: 理解的压缩本质</span>
-            <span class="thread-output">8-chapter manuscript (103KB, 1520 lines)</span>
-            <span class="badge badge-complete">Complete</span>
-        </div>
-        <div class="thread">
-            <span class="thread-name">📊 Quant v2: Changepoint Detection</span>
-            <span class="thread-output">Full IMRaD paper (~6500 words)</span>
-            <span class="badge badge-progress">Draft Ready</span>
-        </div>
-        <div class="thread">
-            <span class="thread-name">🎓 PhD Applications</span>
-            <span class="thread-output">CV · Research Statement · Writing Sample</span>
-            <span class="badge badge-complete">Ready</span>
-        </div>
+    <div class="links">
+        <a href="https://github.com/dd2003-460">GitHub</a>
+        <a href="mailto:your-email@example.com">Email</a>
+        <a href="#phd-package">PhD Package</a>
     </div>
 
-    <!-- Book -->
-    <h2 id="book">📖 Book: "理解 = 压缩"</h2>
-    <p><strong>Core thesis:</strong> Understanding = compression = pattern matching. From Shannon's entropy to Kahneman's System 1/2 to Hayek's price mechanism — everything is pattern matching at different scales.</p>
-
-    <h3>Structure</h3>
-    <table>
-        <thead>
-            <tr><th>Chapter</th><th>Title</th><th>Key Insight</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>序章</td><td>一个惊人的等式</td><td>Hubble (10<sup>18</sup>→10<sup>5</sup> bits) + DNA (3GB→10<sup>17</sup> bits) = understanding is compression</td></tr>
-            <tr><td>Ch1</td><td>什么是模式匹配？</td><td>Turing test → Fisher information → mutual information → f: X→Y</td></tr>
-            <tr><td>Ch2</td><td>最优编码</td><td>Shannon source coding → Kolmogorov complexity → brain as compression</td></tr>
-            <tr><td>Ch3</td><td>直觉的数学</td><td>de Groot chess → System 1/2 = cache lookup vs full decompression</td></tr>
-            <tr><td>Ch4</td><td>推导即精确模式匹配</td><td>Proof = search in logic space, Gödel = search space boundary</td></tr>
-            <tr><td>Ch5</td><td>概率即近似推导</td><td>Bayesian updating = optimal pattern matching under uncertainty</td></tr>
-            <tr><td>Ch6</td><td>社会作为分布式模式匹配</td><td>Price = entropy code, Law = ECC, Culture = intergenerational params</td></tr>
-            <tr><td>终章</td><td>从理解到构建</td><td>AI direction (System 1→2 fusion), cognitive strategy</td></tr>
-        </tbody>
-    </table>
-
-    <h3>Quality Metrics</h3>
-    <ul>
-        <li>✅ Cross-references: Complete forward+backward links between all chapters</li>
-        <li>✅ Term consistency: Core terms (模式匹配 / 理解=压缩 / System 1-2) consistent throughout</li>
-        <li>✅ Case progression: 18 unique cases, no inappropriate repetition</li>
-        <li>✅ Quality review score: <strong>8.9 / 10</strong></li>
-    </ul>
-
-    <!-- Paper -->
-    <h2 id="paper">📊 Paper: "Detecting Scientific Paradigm Shifts"</h2>
-    <p><em>Detecting Scientific Paradigm Shifts via Automated Topic Changepoint Analysis: Lessons from Rigorous Validation</em></p>
-    <p><strong>Target venues:</strong> FinNLP Workshop 2026 (anonymous submission ready) → arXiv (ready to upload) → EMNLP 2026</p>
-
-    <h3>Methodology</h3>
-    <ol>
-        <li><strong>Data:</strong> ~10K arXiv abstracts (quantum computing, 2020–2025)</li>
-        <li><strong>Model:</strong> LDA (15 topics) → topic proportion time series</li>
-        <li><strong>Detection:</strong> Bayesian changepoint detection (posterior &gt; 0.95)</li>
-        <li><strong>Validation:</strong> Event study method (4 windows) + 100 randomized control dates</li>
-        <li><strong>Correction:</strong> Bonferroni multiple testing adjustment + power analysis</li>
-    </ol>
-
-    <h3>Key Findings</h3>
-    <table class="findings">
-        <thead>
-            <tr><th>Window</th><th>Signal (n=13)</th><th>Control (n=100)</th><th>Bonferroni</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>1-day</td><td class="sig">p=0.0024, IR=0.79</td><td>Not significant</td><td>p=0.0096 (marginal)</td></tr>
-            <tr><td>3-day</td><td>Not significant</td><td>Not significant</td><td>—</td></tr>
-            <tr><td>7-day</td><td>Not significant</td><td>Not significant</td><td>—</td></tr>
-            <tr><td>14-day</td><td>Not significant</td><td>Not significant</td><td>—</td></tr>
-        </tbody>
-    </table>
+    <!-- ========== PHD PACKAGE ========== -->
+    <h2 id="phd-package">PhD Application Package</h2>
+    <p>Applying for PhD programs in <strong>Computer Science / Computational Social Science / Information Theory</strong>.
+       Research focus: measuring the information content of scientific progress via automated topic changepoint analysis and information-theoretic frameworks.</p>
 
     <div class="highlight">
-        <strong>Verdict:</strong> The "100% hit rate" (13/13) was small-sample noise — alpha disappears with proper controls. But the <strong>methodology</strong> is the contribution.
+        <p><strong>Research Vision:</strong> Can we measure the <em>information content</em> of scientific progress?
+        If understanding is compression, then paradigm shifts should be detectable as discontinuities in compressibility—moments when the scientific community's shared model breaks down and must be rebuilt.</p>
     </div>
 
-    <h3>Four Contributions</h3>
-    <ol>
-        <li><strong>Pipeline for prospective paradigm shift detection</strong> (first of its kind)</li>
-        <li><strong>Controlled group methodology lesson</strong> (100% → disappears, teaching value)</li>
-        <li><strong>Power analysis framework</strong> (pushing community best practices)</li>
-        <li><strong>Negative result publication</strong> (eliminating publication bias)</li>
-    </ol>
-
-    <!-- PhD Package -->
-    <h2 id="phd">🎓 PhD Application Package</h2>
-    <p><strong>Research interest:</strong> Computational social science, information theory applied to institutional emergence, NLP for scientific discourse analysis</p>
-
-    <table>
+    <table class="pkg-table">
         <thead>
-            <tr><th>Document</th><th>Status</th></tr>
+            <tr><th>Component</th><th>Status</th><th>Details</th></tr>
         </thead>
         <tbody>
-            <tr><td>Academic CV</td><td><span class="badge badge-complete">Ready</span></td></tr>
-            <tr><td>Research Statement</td><td><span class="badge badge-complete">Ready</span></td></tr>
-            <tr><td>Writing Sample #1 (Ch2: "Understanding as Compression")</td><td><span class="badge badge-complete">Ready</span></td></tr>
-            <tr><td>Writing Sample #2 (Ch5: "Probability as Approximate Inference")</td><td><span class="badge badge-complete">Ready</span></td></tr>
-            <tr><td>Cover Letter Template</td><td><span class="badge badge-complete">Ready</span></td></tr>
-            <tr><td>Bibliography (50+ entries)</td><td><span class="badge badge-complete">Ready</span></td></tr>
+            <tr>
+                <td><a href="#research-statement">Research Statement</a></td>
+                <td><span class="status-badge complete">COMPLETE</span></td>
+                <td>~1,500 words, 5 sections</td>
+            </tr>
+            <tr>
+                <td>Writing Sample #1 (Ch2)</td>
+                <td><span class="status-badge complete">COMPLETE</span></td>
+                <td>"Understanding as Compression" — Kolmogorov complexity, dual-process theory</td>
+            </tr>
+            <tr>
+                <td>Writing Sample #2 (Ch5)</td>
+                <td><span class="status-badge complete">COMPLETE</span></td>
+                <td>"Probability as Approximate Inference" — Cox-Jaynes, Koopman submarine search</td>
+            </tr>
+            <tr>
+                <td>Research Paper</td>
+                <td><span class="status-badge ready">READY</span></td>
+                <td>Detecting Scientific Paradigm Shifts via Topic Changepoint Analysis — 4 contributions</td>
+            </tr>
+            <tr>
+                <td>FinNLP 2026 Workshop</td>
+                <td><span class="status-badge waiting">WAITING CFP</span></td>
+                <td>ACL-format paper compiled, anonymous. CFP expected Jun–Jul 2026</td>
+            </tr>
+            <tr>
+                <td>arXiv Preprint</td>
+                <td><span class="status-badge ready">SUBMIT READY</span></td>
+                <td>arxiv_submission.zip compiled (31KB). Awaiting user upload</td>
+            </tr>
         </tbody>
     </table>
 
-    <h3>Target Programs (Priority)</h3>
-    <div class="grid-2">
-        <div class="card">
-            <h4>ETH Zurich</h4>
-            <p>Computational Social Science</p>
+    <!-- ========== RESEARCH STATEMENT ========== -->
+    <h2 id="research-statement">Research Statement</h2>
+    <p>My research program aims to develop a quantitative framework for understanding how knowledge evolves, propagates, and creates value. It integrates three pillars:</p>
+    <ul>
+        <li><strong>Theoretical Foundation:</strong> A monograph arguing that understanding, Bayesian updating, proof, and intuition are all instances of pattern matching at different compression ratios (Shannon + Kolmogorov)</li>
+        <li><strong>Empirical Pipeline:</strong> Detecting paradigm shifts as structural breaks in scientific discourse using LDA topic modeling (1,500 arXiv abstracts across cs.AI, cs.CL, cs.CV, quant-ph) + Bayesian changepoint detection</li>
+        <li><strong>Application Layer:</strong> Information-theoretic analyses of social phenomena (vaccine hesitancy as control group failure, financial NLP at FinNLP 2026)</li>
+    </ul>
+    <p>Full Research Statement: <a href="D1/book2/phd_research_statement.md">phd_research_statement.md</a> (Markdown, ~1,500 words)</p>
+
+    <!-- ========== PUBLICATIONS ========== -->
+    <h2>Publications & Submissions</h2>
+
+    <h3>Primary Paper: Detecting Scientific Paradigm Shifts</h3>
+    <p><strong>4 Contributions:</strong></p>
+    <ul>
+        <li>End-to-end pipeline: arXiv abstracts → LDA topic modeling → Bayesian changepoint detection</li>
+        <li>Application to 1,500 abstracts across 4 categories (cs.AI, cs.CL, cs.CV, quant-ph), Jan 2024–Mar 2026</li>
+        <li>Framework for quantifying negative results and publication bias in topic-level time series</li>
+        <li>Open-source pipeline for reproducibility and community extension</li>
+    </ul>
+    <p>Venue track: <span class="status-badge ready">arXiv preprint ready</span> · FinNLP 2026 (ACL workshop) · EMNLP 2026 (ARR track, DDL May 25)</p>
+
+    <!-- ========== WRITING SAMPLES ========== -->
+    <h2>Writing Samples</h2>
+
+    <h3>WS #1: Understanding as Compression (Ch2)</h3>
+    <p>Establishes the information-theoretic foundation: Kolmogorov complexity as a model of cognition, dual-process theory as compression at different scales, and the unified framework connecting mathematical proof, Bayesian updating, and scientific intuition.</p>
+
+    <h3>WS #2: Probability as Approximate Inference (Ch5)</h3>
+    <p>Demonstrates that probability theory emerges as the unique consistent framework for reasoning under incomplete information. Draws on the Cox-Jaynes derivation, Koopman's submarine search problem (1946), and empirical cases from Base Rate Neglect to COVID-19 social behavior. Three-mode unification framework.</p>
+
+    <!-- ========== THEORETICAL FOUNDATION ========== -->
+    <h2>Theoretical Foundation: Motivation Society</h2>
+    <p>My unpublished monograph, <em>Motivation Society: A Formal Framework for Institutional Emergence</em>, provides the broader intellectual context for my information-theoretic work on science.</p>
+
+    <div class="theorem-box">
+        <h3>Core Thesis</h3>
+        <p>
+            Institutions are <strong>order parameters</strong> of the motivation field:
+            <strong>Economy</strong> ⟷ ground state,
+            <strong>Culture</strong> ⟷ symmetry breaking,
+            <strong>Politics</strong> ⟷ residual symmetry action,
+            <strong>Law</strong> ⟷ topological constraint manifold.
+        </p>
+    </div>
+
+    <ul>
+        <li><strong>Part 1:</strong> Motivation Field Theory — Lagrangian formulation over social space</li>
+        <li><strong>Part 2:</strong> Institutional Emergence Theorem — phase transitions to order parameters</li>
+        <li><strong>Part 3:</strong> Systematic Treatment — economy, culture, politics, law (~2,300 lines LaTeX)</li>
+        <li><strong>Simulations:</strong> Python agent-based models with matplotlib visualizations</li>
+        <li><strong>165 testable predictions</strong> across four institutional domains</li>
+    </ul>
+
+    <div class="institution-map">
+        <div class="inst-card">
+            <h4>Statistical Mechanics</h4>
+            <p>Phase transitions, renormalization group for institutional change</p>
         </div>
-        <div class="card">
-            <h4>Oxford</h4>
-            <p>Complex Systems</p>
+        <div class="inst-card">
+            <h4>Category Theory (Lawvere)</h4>
+            <p>Topos-theoretic structure of legal/institutional logic</p>
         </div>
-        <div class="card">
-            <h4>Santa Fe Institute</h4>
-            <p>Complex Systems PhD</p>
+        <div class="inst-card">
+            <h4>Information Theory (Chaitin)</h4>
+            <p>Complexity bounds on institutional forms</p>
         </div>
-        <div class="card">
-            <h4>Northeastern</h4>
-            <p>Network Science Institute</p>
+        <div class="inst-card">
+            <h4>Network Science</h4>
+            <p>Motif selection mechanisms for institutional topology</p>
         </div>
     </div>
 
-    <!-- Immortality Path -->
-    <h2 id="path">🔗 The Immortality Path</h2>
-    <p>My long-term research trajectory connects these projects into a coherent strategy:</p>
-
-    <div class="path">
-        <div class="path-step"><span class="path-arrow">→</span> Academic Platform (PhD → Professor → Lab)</div>
-        <div class="path-step"><span class="path-arrow">→</span> Research Influence (Papers → Citations → Field-shaping)</div>
-        <div class="path-step"><span class="path-arrow">→</span> Computation Access (Grants → Clusters → GPU farms)</div>
-        <div class="path-step"><span class="path-arrow">→</span> Longevity Research (Biotech AI → Aging → Intervention)</div>
-        <div class="path-step"><span class="path-arrow">→</span> Existence Continuation</div>
-        <div class="path-stage">
-            <strong>Current stage:</strong> Building academic platform through book (influence) + paper (credibility) + PhD applications (institutional access)<br>
-            <strong>Weights:</strong> Academic 0.4 · Capital 0.2 · Health 0.2 · Network 0.2
-        </div>
+    <!-- ========== SEEKING ========== -->
+    <h2>Seeking PhD Positions</h2>
+    <div class="highlight">
+        <p>
+            I am seeking a <strong>PhD in Computer Science / Computational Social Science</strong>
+            with focus on information-theoretic approaches to measuring scientific progress,
+            NLP-based knowledge extraction, and computational analysis of scientific discourse.
+            Open to collaborations on related topics.
+        </p>
     </div>
 
-    <!-- Repository -->
-    <h2>📁 Repository Structure</h2>
-    <div class="file-tree">workspace-coding/
-├── D1/
-│   ├── book2/                          <span style="color:var(--text-muted)"># Book project</span>
-│   │   ├── book2_manuscript_draft.md   <span style="color:var(--text-muted)"># Full manuscript (8 ch, 103KB)</span>
-│   │   ├── book2_quality_review.md     <span style="color:var(--text-muted)"># Quality review (8.9/10)</span>
-│   │   ├── book2_chapter[0-7]_draft.md <span style="color:var(--text-muted)"># Individual chapters</span>
-│   │   └── book2_references_draft.md   <span style="color:var(--text-muted)"># Bibliography (35+ sources)</span>
-│   ├── quant/                          <span style="color:var(--text-muted)"># Quantitative experiment</span>
-│   │   ├── quant_v2_paper_draft.md     <span style="color:var(--text-muted)"># Full IMRaD paper (~6500w)</span>
-│   │   ├── quant_v2_contributions.md   <span style="color:var(--text-muted)"># Contribution mapping</span>
-│   │   └── quant_v2/                   <span style="color:var(--text-muted)"># Experiment code & data</span>
-│   └── academic/submission/            <span style="color:var(--text-muted)"># PhD application package</span>
-│       ├── *.tex · *.bib · figures/
-└── README.md                           <span style="color:var(--text-muted)"># This page (source)</span></div>
-
-    <!-- Quote -->
-    <div class="quote">
-        "认知的基本问题是在有限的存储空间中精确或近似地编码整个世界。"<br>
-        "The fundamental problem of cognition is to encode the entire world, precisely or approximately, within finite storage."
-        <div class="quote-attr">— Extending Shannon (1948) to the cognitive scale</div>
-    </div>
+    <!-- ========== LEGACY ========== -->
+    <h2>Additional Materials</h2>
+    <ul>
+        <li><a href="D1/book2/phd_research_statement.md">Full Research Statement</a> (Markdown)</li>
+        <li><a href="D1/book2/phd_writing_sample.md">Writing Sample: Ch2</a></li>
+        <li><a href="D1/book2/phd_writing_sample_ch5.md">Writing Sample: Ch5</a></li>
+        <li><a href="methodology_approach.md">Formal Methodology Document</a></li>
+        <li><a href="blog_post_degenerate_memetics.md">Popular Science (Chinese): 为什么经济学是退化的模因学</a></li>
+        <li><a href="conference_abstracts.md">Conference Abstracts</a> — CCS, NetSci, StatPhys, APS submissions</li>
+    </ul>
 
     <footer>
-        <span>© 2026 成璐 (D·declaim)</span>
-        <span>Last updated: 2026-03-17</span>
+        <p>Updated 2026-03-17. All content © D·declaim (成璐).</p>
     </footer>
 
 </body>
